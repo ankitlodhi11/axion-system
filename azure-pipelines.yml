@@ -54,4 +54,3 @@ stages:
         azureResourceGroup: 'noida-rg1'
         kubernetesCluster: 'ncraks'
         manifests: 'k8s/deployment.yaml'
-        containers: 'grugram.azurecr.io.azurecr.io/axion-system:$(Build.BuildId)'
