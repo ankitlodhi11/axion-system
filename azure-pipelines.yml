@@ -1,0 +1,35 @@
+trigger:
+- main
+
+pool:
+  name: dhurander
+stages:
+  - stage: 
+    displayName: docker image build
+    jobs: 
+      - job: 
+        displayName: image
+        steps:
+        - task: Docker@2
+          inputs:
+            containerRegistry: 'docker-rg'
+            command: 'login'
+        - task: Docker@2
+          inputs:
+            containerRegistry: 'docker-rg'
+            repository: 'ankitlodhi11/axion-system'
+            command: 'buildAndPush'
+            Dockerfile: '**/Dockerfile'
+  - stage: 
+    jobs:
+      - job: 
+        displayName: deploy aks
+        steps:
+        - task: KubernetesManifest@1
+          inputs:
+            action: 'deploy'
+            connectionType: 'kubernetesServiceConnection'
+            kubernetesServiceConnection: 'axionaks'
+            manifests: 'axion-system'
+
+      
