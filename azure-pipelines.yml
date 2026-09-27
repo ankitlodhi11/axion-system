@@ -22,7 +22,11 @@ stages:
       displayName: Build and Push Image
       inputs:
         containerRegistry: 'docker-rg'
-        repository: 'ankitlodhi11/axion-system'
+        command: 'login'
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'docker-rg'
+        repository: 'grugram.azurecr.io'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
 
@@ -50,4 +54,4 @@ stages:
         azureResourceGroup: 'noida-rg1'
         kubernetesCluster: 'ncraks'
         manifests: 'k8s/deployment.yaml'
-        containers: 'YOUR_ACR_NAME.azurecr.io/axion-system:$(Build.BuildId)'
+        containers: 'grugram.azurecr.io.azurecr.io/axion-system:$(Build.BuildId)'
