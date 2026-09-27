@@ -22,10 +22,9 @@ stages:
       displayName: Build and Push Image
       inputs:
         containerRegistry: 'docker-rg'
-        repository: 'axion-system'
+        repository: 'ankitlodhi11/axion-system'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
-        tags: '$(Build.BuildId)'
 
 
 # =========================
